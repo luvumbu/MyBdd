@@ -1,4 +1,5 @@
 <?php
+header("Access-Control-Allow-Origin: *");
 class Mybdd { 
   private $Connect_value=false;
   private $servername ;
@@ -311,6 +312,4 @@ if ($result->num_rows > 0) {
 }
 //§!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
 } 
