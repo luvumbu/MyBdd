@@ -16,6 +16,7 @@ class Mybdd {
   private $select_sql;
   private $select_row_name= array();
   private $select_row_value= array();
+  private $row_all_boolean=false;
   
 
 function __construct($servername,$dbname,$username,$password) {
@@ -97,10 +98,18 @@ function get_table(){
 }
 
 function get_row($name){
-  return $this->row[$name];
+  
+  if($this->row_all_boolean==true){
+    return $this->row[$name];
+  }
 }
 function get_row_all(){
-  return $this->row;
+ 
+  if($this->row_all_boolean==true){
+    return $this->row;
+
+  }
+  
 }
 
 function get_array_table($number){ 
@@ -214,9 +223,7 @@ for($i=0;$i<$this->count_array_table();$i++){
   $this->liste_table = $this->liste_table.$this->get_array_table($i);  
 }
 
-$sql = "CREATE TABLE $this->table (
-$this->liste_table
-)";
+$sql = "CREATE TABLE $this->table ($this->liste_table)";
 
 if ($conn->query($sql) === TRUE) {
   echo "Table MyGuests created successfully";
@@ -232,19 +239,6 @@ else{
 }
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 function select_sql(){
   $this->Connect();
   if( $this->Connect_value==true){
@@ -254,11 +248,7 @@ function select_sql(){
     if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
     }
-    
-    // sql to create table
-    
-   
- 
+        // sql to create table 
 $sql = $this->select_sql;
 $result = $conn->query($sql);
 
@@ -269,30 +259,13 @@ if ($result->num_rows > 0) {
   echo "<br/>";
   echo "count ici <br/>".$this->count_select_row_name();
   // foreache debut
-
-
-
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
 for($i=0;$i<$this->count_select_row_name();$i++){
-  //echo "<strong>".$this->get_select_row_name($i)."</strong><br/>";
- 
+  //echo "<strong>".$this->get_select_row_name($i)."</strong><br/>"; 
   $this->set_select_row_value($row[$this->get_select_row_name($i)]);
 }
 $this->merge_row();
- 
- 
-
-
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
- 
-
- 
-
-
-
-
   // foreach fin
   }
 } else {
@@ -301,12 +274,95 @@ $this->merge_row();
 $conn->close();    
   }
 } 
+// insert si lelement nexiste pas !!!! 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+function insert_sql($element){
+  $this->Connect();
+  if( $this->Connect_value==true){
+    // Create connection
+    $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+    // Check connection
+    if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+    }
+        // sql to create table 
+$sql = $this->select_sql;
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+     
+
  
+  }
+} else {
+  echo "0 results pas de resultat  ok 00 zero";
+  
+
+
+
+  $sql =$element;
+  
+  if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully";
+  } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+  
+  $conn->close();
+
+
+
+
+
+
+
 }
- 
+   
+  }
+}
+//§!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+} 
  
 $apple = new Mybdd("localhost","test","root","root");
 //$apple = new Mybdd("localhost","u481158665_u481158665_all","u481158665_u481158665_all","v3p9r3e@59A");
+// CONNEXION EXTERRIEUR A LAIDE DE LA PREMIER METHODE 
+// INSERTION DES ELEMENTS EXEMPLE DE CODE
 $apple->set_name_table("question");
 $apple->set_array_table("id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,");
 $apple->set_array_table("firstname VARCHAR(30) NOT NULL,");
@@ -315,8 +371,9 @@ $apple->set_array_table("reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE 
 $apple->createtable();  
 $apple->set_select_row_name("firstname");
 
-$apple->set_select_sql('SELECT * FROM `abc` WHERE `firstname`="je suis un test"');
+$apple->set_select_sql('SELECT * FROM `abc` WHERE `firstname`="Original"');
 echo $apple->get_select_sql(0);
-$apple->select_sql();
+//$apple->select_sql();
+$apple->insert_sql( "INSERT INTO abc (firstname)  VALUES ('Original')");
 //echo $apple->get_row("firstname");
-print_r($apple->get_row_all());
+ 
