@@ -14,8 +14,7 @@ $apple->set_array_table("firstname VARCHAR(30) NOT NULL,");
 $apple->set_array_table("reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP");
 //$apple->insert_data("INSERT INTO abc (firstname)VALUES ('agua')");
 $apple->createtable();
-*/
- 
+*/ 
 switch ($call) {
     case "epreuve":
     $epreuve_nom_complet= $_POST["epreuve_nom_complet"];
@@ -39,27 +38,15 @@ switch ($call) {
         $apple->set_select_sql('SELECT * FROM `users` WHERE `users_nom_complet`="'.$users_nom_complet.'"'); 
         $apple->insert_sql( "INSERT INTO users (users_nom_complet,result_users_nom_0,result_users_nom_1,result_users_nom_2,users_sex,users_naissance,users_naissance2,users_nationality)  VALUES ('$users_nom_complet','$result_users_nom_0','$result_users_nom_1','$result_users_nom_2','$users_sex','$users_naissance','$users_naissance2','$users_nationality')");
         $apple->set_select_sql('SELECT * FROM `nationality` WHERE `nationality_name`="'.$users_nationality.'"'); 
-        $apple->insert_sql( "INSERT INTO nationality (nationality_name)  VALUES ('$users_nationality')");
-    
+        $apple->insert_sql( "INSERT INTO nationality (nationality_name)  VALUES ('$users_nationality')");    
         break;
-
-
-
-
         case "club":
          echo "Mon club ok" ; 
           $club_nom_complet= $_POST["club_nom_complet"];
           $club_departement= $_POST["club_departement"];
-          $club_region= $_POST["club_region"];
- 
-                  
+          $club_region= $_POST["club_region"];                  
           $apple->set_select_sql('SELECT * FROM `club` WHERE `club_nom_complet`="'.$club_nom_complet.'"'); 
           $apple->insert_sql( "INSERT INTO club (club_nom_complet,club_departement,club_region)  VALUES ('$club_nom_complet','$club_departement','$club_region')");
- 
-      
-          break;
- 
-  
-   
+          break;   
   }
 ?>

@@ -318,59 +318,23 @@ users.add("call", "users"); // ajout de l'information pour lenvoi
 // expected output: true
 console.log(users.info()); // demande l'information dans le tableau
 users.push(); // envoie l'information au code pkp 
-
-
-
-
-
-
-
-
 club_nom_complet =  tr[i].children[8].innerText  ;
 club_departement =  tr[i].children[10].innerText ;
 club_region =		tr[i].children[12].innerText ;
-
-
-var club = new Information("php.php"); // création de la classe 
- 
+var club = new Information("php.php"); // création de la classe  
 club.add("club_nom_complet",club_nom_complet);
 club.add("club_departement",club_departement);
 club.add("club_region",club_region);
-
 club.add("call", "club"); // ajout de l'information pour lenvoi 
 // expected output: true
 console.log(club.info()); // demande l'information dans le tableau
 club.push(); // envoie l'information au code pkp 
-
-/// du code ici 
-
-
-	// ajouter informations user ici 
-
-/*
-
-	var users = new Information("php.php"); // création de la classe 
-	users.add("users_nom_complet", users_nom_complet); // ajout de l'information pour lenvoi 
-	// users.add("epreuve_filtre_nom",epreuve_filtre_nom);
-	// users.add("epreuve_sex",epreuve_sex);
-	// users.add("epreuve_emplacement",epreuve_emplacement);
-	// users.add("epreuve_filtre_nom",epreuve_filtre_nom);
-	 
-	console.log(users.info()); // demande l'information dans le tableau
-	users.push(); // envoie l'information au code pkp 
-	
-	// fin de lajout des informations user ici 
-	*/
 }
-
 var epreuve = new Information("php.php"); // création de la classe 
 epreuve.add("epreuve_nom_complet", epreuve_nom_complet); // ajout de l'information pour lenvoi 
 epreuve.add("epreuve_filtre_nom",epreuve_filtre_nom);
 epreuve.add("epreuve_sex",epreuve_sex);
 epreuve.add("epreuve_emplacement",epreuve_emplacement);
 epreuve.add("call", "epreuve"); // ajout de l'information pour lenvoi 
-
- 
 console.log(epreuve.info()); // demande l'information dans le tableau
 epreuve.push(); // envoie l'information au code pkp 
-
