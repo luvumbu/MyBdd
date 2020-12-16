@@ -99,28 +99,19 @@ if(anne_epreuve_verif==true){
  
 
 
-// information utiles pour la bdd partie epreuve **********************************=(Epreuve 
-//{
-// MISSION COMPLET EPREUVE 
-console.log(epreuve_sex); 
-console.log(epreuve_filtre_nom);
-console.log(epreuve_nom_complet);
-console.log(epreuve_emplacement); 
-console.log(anne_epreuve);
-console.log(taille_athletes);
-//}
-// fin partie epreuve informations ************************************************=Epreuve)
+ 
 
 
-//// result_id
-//// result_id_user
-//// result_id_club
-//// result_id_epreuve
-//// id_villes
-//// 
 
-
-//result_users_nom_complet  //ok
+var epreuve = new Information("php.php"); // création de la classe 
+epreuve.add("epreuve_nom_complet", epreuve_nom_complet); // ajout de l'information pour lenvoi 
+epreuve.add("epreuve_filtre_nom",epreuve_filtre_nom);
+epreuve.add("epreuve_sex",epreuve_sex);
+epreuve.add("epreuve_emplacement",epreuve_emplacement);
+epreuve.add("call", "epreuve"); // ajout de l'information pour lenvoi 
+//console.log(epreuve.info()); // demande l'information dans le tableau
+epreuve.push(); // envoie l'information au code pkp 
+ 
  result_users_nom =""; //ok
  result_users_nom=false;
 /*result_users_prenom // Nok
@@ -272,6 +263,34 @@ if(users_nationality_boolean==false){
 } 
 users_nom_complet =result_users_nom_0+" "+result_users_nom_1+" "+result_users_nom_2;
 users_nom_complet_1=tr[i].children[6].innerText;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var users = new Information("php.php"); // création de la classe 
 users.add("users_nom_complet", users_nom_complet); // ajout de l'information pour lenvoi 
 users.add("users_nom_complet_1",tr[i].children[6].innerText);
@@ -305,24 +324,55 @@ club.push(); // envoie l'information au code pkp
 
 
 // partie result 
+
+ 
+
+ 
+// valeur club 
 var result = new Information("php.php"); // création de la classe  
+result.add("club_nom_complet", tr[i].children[8].innerText); // ajout de l'information pour lenvoi 
+result.add("epreuve_nom_complet", epreuve_nom_complet); // ajout de l'information pour lenvoi 
+result.add("nationality_name", users_nationality); // ajout de l'information pour lenvoi 
+result.add("users_nom_complet", tr[i].children[6].innerText); // ajout de l'information pour lenvoi 
+result.add("",tr[4].children[20].innerText);
 result.add("call", "result"); // ajout de l'information pour lenvoi 
 // expected output: true
-console.log(result.info()); // demande l'information dans le tableau
+
+
+result.add("club_nom_complet",tr[i].children[8].innerText);
+result.add("club_departement",tr[i].children[10].innerText);
+result.add("club_region",tr[i].children[12].innerText);
+result.add("call", "club"); // ajout de l'information pour lenvoi 
+result.add("users_nom_complet", users_nom_complet); // ajout de l'information pour lenvoi 
+result.add("users_nom_complet_1",tr[i].children[6].innerText);
+result.add("result_users_nom_0",result_users_nom_0);
+result.add("result_users_nom_1",result_users_nom_1);
+result.add("result_users_nom_2",result_users_nom_2);
+result.add("users_naissance",users_naissance);
+result.add("nationality_name",users_nationality);
+result.add("users_naissance2",users_naissance2);
+result.add("users_nationality",users_nationality); 
+result.add("users_sex",users_sex);
+result.add("call", "users"); // ajout de l'information pour lenvoi 
+result.add("epreuve_nom_complet", epreuve_nom_complet); // ajout de l'information pour lenvoi 
+result.add("epreuve_filtre_nom",epreuve_filtre_nom);
+result.add("epreuve_sex",epreuve_sex);
+result.add("epreuve_emplacement",epreuve_emplacement);
+result.add("call", "result"); // ajout de l'information pour lenvoi 
 result.push(); // envoie l'information au code pkp 
-// fin de la partie result
+console.log(result.info()); // demande l'information dans le tableau
+//fin du club
+
+
+
+
+
+
+
+	 
+	 
  
  
 }
 
-var epreuve = new Information("php.php"); // création de la classe 
-epreuve.add("epreuve_nom_complet", epreuve_nom_complet); // ajout de l'information pour lenvoi 
-epreuve.add("epreuve_filtre_nom",epreuve_filtre_nom);
-epreuve.add("epreuve_sex",epreuve_sex);
-epreuve.add("epreuve_emplacement",epreuve_emplacement);
-epreuve.add("call", "epreuve"); // ajout de l'information pour lenvoi 
-
- 
-//console.log(epreuve.info()); // demande l'information dans le tableau
-epreuve.push(); // envoie l'information au code pkp 
 
