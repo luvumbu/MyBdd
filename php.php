@@ -1,8 +1,9 @@
 <?php
 include ("Mybdd.php");
 
-$call = $_POST["call"];
 
+ 
+$call = $_POST["call"];
 $apple = new Mybdd("localhost","u481158665_all_ffa_5","root","root");
 //$apple = new Mybdd("localhost","u481158665_u481158665_all","u481158665_u481158665_all","v3p9r3e@59A");
 // CONNEXION EXTERRIEUR A LAIDE DE LA PREMIER METHODE 
@@ -28,6 +29,7 @@ switch ($call) {
       break;
       case "users":
         $users_nom_complet= $_POST["users_nom_complet"];
+        $users_nom_complet_1= $_POST["users_nom_complet_1"];
         $result_users_nom_0= $_POST["result_users_nom_0"];
         $result_users_nom_1= $_POST["result_users_nom_1"];
         $result_users_nom_2= $_POST["result_users_nom_2"];
@@ -36,7 +38,7 @@ switch ($call) {
         $users_nationality= $_POST["users_nationality"];
         $users_sex= $_POST["users_sex"];        
         $apple->set_select_sql('SELECT * FROM `users` WHERE `users_nom_complet`="'.$users_nom_complet.'"'); 
-        $apple->insert_sql( "INSERT INTO users (users_nom_complet,result_users_nom_0,result_users_nom_1,result_users_nom_2,users_sex,users_naissance,users_naissance2,users_nationality)  VALUES ('$users_nom_complet','$result_users_nom_0','$result_users_nom_1','$result_users_nom_2','$users_sex','$users_naissance','$users_naissance2','$users_nationality')");
+        $apple->insert_sql( "INSERT INTO users (users_nom_complet,users_nom_complet_1,result_users_nom_0,result_users_nom_1,result_users_nom_2,users_sex,users_naissance,users_naissance2,users_nationality)  VALUES ('$users_nom_complet','$users_nom_complet_1','$result_users_nom_0','$result_users_nom_1','$result_users_nom_2','$users_sex','$users_naissance','$users_naissance2','$users_nationality')");
         $apple->set_select_sql('SELECT * FROM `nationality` WHERE `nationality_name`="'.$users_nationality.'"'); 
         $apple->insert_sql( "INSERT INTO nationality (nationality_name)  VALUES ('$users_nationality')");    
         break;
@@ -48,5 +50,8 @@ switch ($call) {
           $apple->set_select_sql('SELECT * FROM `club` WHERE `club_nom_complet`="'.$club_nom_complet.'"'); 
           $apple->insert_sql( "INSERT INTO club (club_nom_complet,club_departement,club_region)  VALUES ('$club_nom_complet','$club_departement','$club_region')");
           break;   
+          case "result":
+          echo "result ok mon resultat";
+          break;
   }
 ?>
