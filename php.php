@@ -43,7 +43,7 @@ switch ($call) {
         $apple->insert_sql( "INSERT INTO nationality (nationality_name)  VALUES ('$users_nationality')");    
         break;
         case "club":
-         echo "Mon club ok" ; 
+         
           $club_nom_complet= $_POST["club_nom_complet"];
           $club_departement= $_POST["club_departement"];
           $club_region= $_POST["club_region"];                  
@@ -51,7 +51,83 @@ switch ($call) {
           $apple->insert_sql( "INSERT INTO club (club_nom_complet,club_departement,club_region)  VALUES ('$club_nom_complet','$club_departement','$club_region')");
           break;   
           case "result":
-          echo "result ok mon resultat";
+
+          $club = new Mybdd("localhost","u481158665_all_ffa_5","root","root");
+          $club_nom_complet = $_POST["club_nom_complet"];
+          $epreuve_nom_complet = $_POST["epreuve_nom_complet"]; 
+          $nationality_name  = $_POST["nationality_name"]; 
+          $users_nom_complet = $_POST["users_nom_complet"]; 
+
+          $club->set_select_sql('SELECT * FROM `club` WHERE `club_nom_complet`="'.$club_nom_complet.'"'); 
+
+          $club->set_select_row_name('club_id'); 
+ 
+     
+ 
+          $club->select_sql();
+          
+          echo $club->get_row('club_id');
+ 
+
+          // 
+
+
+
+          //epreuves 
+
+
+          $epreuve = new Mybdd("localhost","u481158665_all_ffa_5","root","root");
+          $epreuve->set_select_sql('SELECT * FROM `epreuve` WHERE `epreuve_nom_complet`="'.$epreuve_nom_complet.'"'); 
+          $epreuve->set_select_row_name('epreuve_id'); 
+          $epreuve->select_sql();
+          $epreuve->get_row('epreuve_id');
+         // echo $epreuve->get_row('epreuve_nom_complet');          
+         // echo $epreuve->get_row('epreuve_filtre_nom');
+         // echo $epreuve->get_row('epreuve_sex');
+         // echo $epreuve->get_row('epreuve_emplacement');
+         // nationality  ok 
+          $nationality = new Mybdd("localhost","u481158665_all_ffa_5","root","root");
+          $nationality->set_select_sql('SELECT * FROM `nationality` WHERE `nationality_name`="'.$nationality_name.'"'); 
+          $nationality->set_select_row_name('nationality_id');           
+          $nationality->select_sql();
+          $nationality->get_row('nationality_id');         
+         // fin  nationality  ok 
+
+          // user ok 
+          $users = new Mybdd("localhost","u481158665_all_ffa_5","root","root");
+          $users->set_select_sql('SELECT * FROM `users` WHERE `users_nom_complet`="'.$users_nom_complet.'"'); 
+          $users->set_select_row_name('users_id');  
+          $users->select_sql();
+          echo $users->get_row('users_id');
+
+
+ 
+       
+         // fin user  
+         
+         
+
+         // Insertion  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 
+         
+ 
+
+ 
+
+$result_club_id=$club->get_row('club_id');
+$result_users_id=$users->get_row('users_id'); 
+$result_epreuve_id=$epreuve->get_row('epreuve_id');
+ 
+
+         $result = new Mybdd("localhost","u481158665_all_ffa_5","root","root");
+         $result->set_select_sql('SELECT * FROM `result` WHERE `result_club_id`="'.$result_club_id.'"'); 
+         //$apple->select_sql();
+         $result->insert_sql( "INSERT INTO result (result_club_id,result_users_id,result_epreuve_id)  VALUES ('$result_club_id','$result_users_id','$result_epreuve_id')");
+         //echo $apple->get_row("firstname");
+
+
+
+         // Fin Insertion !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
           break;
   }
 ?>

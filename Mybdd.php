@@ -100,16 +100,16 @@ function get_table(){
 
 function get_row($name){
   
-  if($this->row_all_boolean==true){
+ 
     return $this->row[$name];
-  }
+ 
 }
 function get_row_all(){
  
-  if($this->row_all_boolean==true){
+ 
     return $this->row;
 
-  }
+  
   
 }
 
