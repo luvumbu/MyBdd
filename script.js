@@ -59,6 +59,8 @@ var result_users_nom_3 =""; //ok
 var result_users_nom=false;
 var users_naissance ="";
 var users_naissance2 ="";
+var users_nom_complet; 
+var users_nom_complet_1; 
 
 
 for(var i=0;i<anne_epreuve_taille;i++){ // boucle anne_epreuve
@@ -219,41 +221,6 @@ for(var i = 3 ; i <taille_athletes-1; i++){
 	   else{
 		users_naissance2 ="19"+users_naissance;
 	   }
-	  
- 
-// fin de la verification du nombre de space !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-
-
-	// boucle pour les information de l'utilisateur 
-
-
-	
-
-	// faire algo pour analyser si il ya un reccord 
-	//result_personal_reccord
-
-	// faire algo nom	 
-	// faire algo prenom
-
-	//result_naissance_nom
-
-
-	//tr[i].children[16].innerText //result_naissance_nom
-	// faire algo naissance en fonction de la date ici 
-
-	//result_filtre_epreuve_nom = epreuve_filtre_nom
-	//result_epreuve_nom = epreuve_nom_complet
-
-	//tr[i].children[2].innerText // result_perf
-	//faire algo en fonction de lepreuve demandé 
-
-	//tr[i].children[8].innerText //result_club_nom //
-	//tr[20].children[10].innerText // result_club_region
-	//tr[20].children[12].innerText//result_club_departement
-	//result_cat // tr[20].children[14].innerText
-	//tr[3].children[18].innerText // result_date_perf
 	}
 
 
@@ -275,7 +242,7 @@ for(var i = 3 ; i <taille_athletes-1; i++){
 if(result_users_nom_2.includes("(")==true){
 	
 	var result_users_nom_2 = result_users_nom_2.replace("(", "");
-	var result_users_nom_2 = result_users_nom_2.replace(")", "")	;
+	var result_users_nom_2 = result_users_nom_2.replace(")", "");
  
 	users_nationality=result_users_nom_2;
 	result_users_nom_2="";
@@ -303,9 +270,10 @@ if(result_users_nom_4.includes("(")==true){
 if(users_nationality_boolean==false){
 	users_nationality = "FR";
 } 
-
+users_nom_complet =result_users_nom_0+" "+result_users_nom_1+" "+result_users_nom_2;
+users_nom_complet_1=tr[i].children[6].innerText;
 var users = new Information("php.php"); // création de la classe 
-users.add("users_nom_complet", result_users_nom_0+" "+result_users_nom_1+" "+result_users_nom_2); // ajout de l'information pour lenvoi 
+users.add("users_nom_complet", users_nom_complet); // ajout de l'information pour lenvoi 
 users.add("users_nom_complet_1",tr[i].children[6].innerText);
 users.add("result_users_nom_0",result_users_nom_0);
 users.add("result_users_nom_1",result_users_nom_1);
@@ -316,18 +284,28 @@ users.add("users_nationality",users_nationality);
 users.add("users_sex",users_sex);
 users.add("call", "users"); // ajout de l'information pour lenvoi 
 // expected output: true
-
-
 console.log(users.info()); // demande l'information dans le tableau
 users.push(); // envoie l'information au code pkp 
 
+// partie club 
 
+
+var club = new Information("php.php"); // création de la classe 
+ 
+club.add("club_nom_complet",tr[i].children[8].innerText);
+club.add("club_departement",tr[i].children[10].innerText);
+club.add("club_region",tr[i].children[12].innerText);
+club.add("call", "club"); // ajout de l'information pour lenvoi 
+// expected output: true
+console.log(club.info()); // demande l'information dans le tableau
+club.push(); // envoie l'information au code pkp 
+
+// fin de la partie club 
 
 
 
 // partie result 
-var result = new Information("php.php"); // création de la classe 
- 
+var result = new Information("php.php"); // création de la classe  
 result.add("call", "result"); // ajout de l'information pour lenvoi 
 // expected output: true
 console.log(result.info()); // demande l'information dans le tableau
