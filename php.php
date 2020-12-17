@@ -1,12 +1,21 @@
 <?php
 include ("Mybdd.php");
 
-
+/*
 $servername_ = "localhost";
 $dbname_ = "u481158665_all_ffa_5";
 $username_ = "root";
 $password_ = "root";
 $call = $_POST["call"];
+*/
+$servername_ = "localhost";
+$dbname_ = "u481158665_ffa";
+$username_ = "u481158665_ffa";
+$password_ = "v3p9r3e@59A";
+$call = $_POST["call"];
+
+
+
 $apple = new Mybdd($servername_,$dbname_,$username_,$password_);
 //$apple = new Mybdd("localhost","u481158665_u481158665_all","u481158665_u481158665_all","v3p9r3e@59A");
 // CONNEXION EXTERRIEUR A LAIDE DE LA PREMIER METHODE 
@@ -24,7 +33,10 @@ switch ($call) {
     $epreuve_nom_complet= $_POST["epreuve_nom_complet"];
     $epreuve_filtre_nom= $_POST["epreuve_filtre_nom"];
     $epreuve_sex= $_POST["epreuve_sex"];
-    $epreuve_emplacement= $_POST["epreuve_emplacement"];       
+    $epreuve_emplacement= $_POST["epreuve_emplacement"];         
+ 
+
+
     $apple->set_select_sql('SELECT * FROM `epreuve` WHERE `epreuve_nom_complet`="'.$epreuve_nom_complet.'"'); 
     //$apple->select_sql();
     $apple->insert_sql( "INSERT INTO epreuve (epreuve_nom_complet,epreuve_filtre_nom,epreuve_sex,epreuve_emplacement)  VALUES ('$epreuve_nom_complet','$epreuve_filtre_nom','$epreuve_sex','$epreuve_emplacement')");
@@ -33,11 +45,7 @@ switch ($call) {
       case "users":
 
 
-        $users_link_page=$_POST["users_link_page"];
-        $search  = array("&","'","à","À","á","Á","â","Â","ã","Ã","ä","Ä","å","Å","æ","Æ","è","È","é","É","ê","Ê","ë","Ë","ì","Ì","í","Í","î","Î","ï","Ï","ò","Ò","ó","Ó","ô","Ô","õ","Õ","ö","Ö","ø","Ø","ù","Ù","ú","Ú","û","Û","ü","Ü","ñ","Ñ","ý","Ý");
-        $replace = array('&amp',"&#039","a","a","a","a","a","a","a","a","a","a","a","a","&aelig","&AElig","&egrave","&Egrave","&eacute","&Eacute","&ecirc","&Ecirc","&euml","&Euml","&igrave","&Igrave","&iacute","&Iacute","&icirc","&Icirc","&iuml","&Iuml","&ograve","&Ograve","&oacute","&Oacute","&ocirc","&Ocirc","&otilde","&Otilde","&ouml","&Ouml","&oslash","&Oslash","&ugrave","&Ugrave","&uacute","&Uacute","&ucirc","&Ucirc","&uuml","&Uuml","&ntilde","&Ntilde","&yacute","&Yacute");
-        $users_link_page= str_replace($search, $replace, $users_link_page);
-
+ 
 
 
 
@@ -59,7 +67,7 @@ switch ($call) {
         $users_nationality= $_POST["users_nationality"];
         $users_sex= $_POST["users_sex"];        
         $apple->set_select_sql('SELECT * FROM `users` WHERE `users_nom_complet`="'.$users_nom_complet.'"'); 
-        $apple->insert_sql( "INSERT INTO users (users_nom_complet,users_nom_complet_1,result_users_nom_0,result_users_nom_1,result_users_nom_2,users_sex,users_naissance,users_naissance2,users_nationality,users_link_page)  VALUES ('$users_nom_complet','$users_nom_complet_1','$result_users_nom_0','$result_users_nom_1','$result_users_nom_2','$users_sex','$users_naissance','$users_naissance2','$users_nationality','$users_link_page')");
+        $apple->insert_sql( "INSERT INTO users (users_nom_complet,users_nom_complet_1,result_users_nom_0,result_users_nom_1,result_users_nom_2,users_sex,users_naissance,users_naissance2,users_nationality)  VALUES ('$users_nom_complet','$users_nom_complet_1','$result_users_nom_0','$result_users_nom_1','$result_users_nom_2','$users_sex','$users_naissance','$users_naissance2','$users_nationality')");
         $apple->set_select_sql('SELECT * FROM `nationality` WHERE `nationality_name`="'.$users_nationality.'"'); 
         $apple->insert_sql( "INSERT INTO nationality (nationality_name)  VALUES ('$users_nationality')");    
         break;
@@ -239,31 +247,16 @@ $result_date_perf = $_POST["result_date_perf"];
              '$result_villes_nom',
              '$result_date_perf'
              )");
-         //echo $apple->get_row("firstname");
 
-         
-/*
-       
-         $result_club_region=          $club_region;
-         $result_club_departement =    $club_departement;
-         $result_epreuve_nom_complet = $epreuve_nom_complet;
-         $result_epreuve_filtre_nom=   $epreuve_filtre_nom;
-         $result_epreuve_sex=          $epreuve_sex;
-         $result_epreuve_emplacement = $epreuve_emplacement;
-         $result_users_nom_complet=    $users_nom_complet; 
-         $result_users_nom_complet_1=  $users_nom_complet_1;
-         $result_users_nom=            $result_users_nom_0;
-         $result_users_prenom0=        $result_users_nom_1;
-         $result_users_prenom1=        $result_users_nom_2;
-         $result_users_prenom2=        "";
-         $result_users_sex =           $users_sex;
-         $result_users_naissance=      $nationality_name;
-         $result_users_naissance2=     $users_naissance2;
-         $result_users_nationality =   $users_nationality;
-         $result_villes_nom =          $_POST["result_villes_nom"];
-         $result_date_perf =           $_POST["result_date_perf"];
-*/
 
+
+
+
+$villes = new Mybdd($servername_,$dbname_,$username_,$password_);
+$villes->set_select_sql('SELECT * FROM `villes` WHERE `villes_nom`="'.$result_villes_nom.'"'); 
+$villes->insert_sql( "INSERT INTO villes (villes_nom)  VALUES ('$result_villes_nom')");
+
+ 
 
          
 
