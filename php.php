@@ -2,9 +2,12 @@
 include ("Mybdd.php");
 
 
- 
+$servername_ = "localhost";
+$dbname_ = "u481158665_all_ffa_5";
+$username_ = "root";
+$password_ = "root";
 $call = $_POST["call"];
-$apple = new Mybdd("localhost","u481158665_all_ffa_5","root","root");
+$apple = new Mybdd($servername_,$dbname_,$username_,$password_);
 //$apple = new Mybdd("localhost","u481158665_u481158665_all","u481158665_u481158665_all","v3p9r3e@59A");
 // CONNEXION EXTERRIEUR A LAIDE DE LA PREMIER METHODE 
 // INSERTION DES ELEMENTS EXEMPLE DE CODE
@@ -28,6 +31,24 @@ switch ($call) {
     //echo $apple->get_row("firstname");
       break;
       case "users":
+
+
+        $users_link_page=$_POST["users_link_page"];
+        $search  = array("&","'","à","À","á","Á","â","Â","ã","Ã","ä","Ä","å","Å","æ","Æ","è","È","é","É","ê","Ê","ë","Ë","ì","Ì","í","Í","î","Î","ï","Ï","ò","Ò","ó","Ó","ô","Ô","õ","Õ","ö","Ö","ø","Ø","ù","Ù","ú","Ú","û","Û","ü","Ü","ñ","Ñ","ý","Ý");
+        $replace = array('&amp',"&#039","a","a","a","a","a","a","a","a","a","a","a","a","&aelig","&AElig","&egrave","&Egrave","&eacute","&Eacute","&ecirc","&Ecirc","&euml","&Euml","&igrave","&Igrave","&iacute","&Iacute","&icirc","&Icirc","&iuml","&Iuml","&ograve","&Ograve","&oacute","&Oacute","&ocirc","&Ocirc","&otilde","&Otilde","&ouml","&Ouml","&oslash","&Oslash","&ugrave","&Ugrave","&uacute","&Uacute","&ucirc","&Ucirc","&uuml","&Uuml","&ntilde","&Ntilde","&yacute","&Yacute");
+        $users_link_page= str_replace($search, $replace, $users_link_page);
+
+
+
+
+
+
+
+
+
+
+
+
         $users_nom_complet= $_POST["users_nom_complet"];
         $users_nom_complet_1= $_POST["users_nom_complet_1"];
         $result_users_nom_0= $_POST["result_users_nom_0"];
@@ -38,7 +59,7 @@ switch ($call) {
         $users_nationality= $_POST["users_nationality"];
         $users_sex= $_POST["users_sex"];        
         $apple->set_select_sql('SELECT * FROM `users` WHERE `users_nom_complet`="'.$users_nom_complet.'"'); 
-        $apple->insert_sql( "INSERT INTO users (users_nom_complet,users_nom_complet_1,result_users_nom_0,result_users_nom_1,result_users_nom_2,users_sex,users_naissance,users_naissance2,users_nationality)  VALUES ('$users_nom_complet','$users_nom_complet_1','$result_users_nom_0','$result_users_nom_1','$result_users_nom_2','$users_sex','$users_naissance','$users_naissance2','$users_nationality')");
+        $apple->insert_sql( "INSERT INTO users (users_nom_complet,users_nom_complet_1,result_users_nom_0,result_users_nom_1,result_users_nom_2,users_sex,users_naissance,users_naissance2,users_nationality,users_link_page)  VALUES ('$users_nom_complet','$users_nom_complet_1','$result_users_nom_0','$result_users_nom_1','$result_users_nom_2','$users_sex','$users_naissance','$users_naissance2','$users_nationality','$users_link_page')");
         $apple->set_select_sql('SELECT * FROM `nationality` WHERE `nationality_name`="'.$users_nationality.'"'); 
         $apple->insert_sql( "INSERT INTO nationality (nationality_name)  VALUES ('$users_nationality')");    
         break;
@@ -52,7 +73,7 @@ switch ($call) {
           break;   
           case "result":
 
-          $club = new Mybdd("localhost","u481158665_all_ffa_5","root","root");
+          $club = new Mybdd($servername_,$dbname_,$username_,$password_);
           $club_nom_complet = $_POST["club_nom_complet"];
           $epreuve_nom_complet = $_POST["epreuve_nom_complet"];   
           $users_nom_complet =  $_POST["users_nom_complet"];            
@@ -112,7 +133,7 @@ switch ($call) {
           //epreuves 
 
 
-          $epreuve = new Mybdd("localhost","u481158665_all_ffa_5","root","root");
+          $epreuve = new Mybdd($servername_,$dbname_,$username_,$password_);
           $epreuve->set_select_sql('SELECT * FROM `epreuve` WHERE `epreuve_nom_complet`="'.$epreuve_nom_complet.'"'); 
           $epreuve->set_select_row_name('epreuve_id'); 
           $epreuve->select_sql();
@@ -126,7 +147,7 @@ switch ($call) {
          // fin  nationality  ok 
 
           // user ok 
-          $users = new Mybdd("localhost","u481158665_all_ffa_5","root","root");
+          $users = new Mybdd($servername_,$dbname_,$username_,$password_);
           $users->set_select_sql('SELECT * FROM `users` WHERE `users_nom_complet`="'.$users_nom_complet.'"'); 
           $users->set_select_row_name('users_id');  
           $users->select_sql();
@@ -170,7 +191,7 @@ $result_date_perf = $_POST["result_date_perf"];
 
  
 
-         $result = new Mybdd("localhost","u481158665_all_ffa_5","root","root");
+         $result = new Mybdd($servername_,$dbname_,$username_,$password_);
          $result->set_select_sql('SELECT * FROM `result` WHERE `result_users_nom_complet`="'.$users_nom_complet.'" AND `result_date_perf` ="'.$result_date_perf.'" '); 
          //$apple->select_sql();
          $result->insert_sql( "INSERT INTO result (

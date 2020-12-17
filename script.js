@@ -228,6 +228,11 @@ users.add("users_nom_complet_1",tr[i].children[6].innerText);
 users.add("result_users_nom_0",result_users_nom_0);
 users.add("result_users_nom_1",result_users_nom_1);
 users.add("result_users_nom_2",result_users_nom_2);
+
+users.add("users_link_page",window.location);
+
+
+
 users.add("users_naissance",users_naissance);
 users.add("users_naissance2",users_naissance2);
 users.add("users_nationality",users_nationality); 
