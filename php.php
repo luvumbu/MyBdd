@@ -180,7 +180,22 @@ $result_users_id=$users->get_row('users_id');
 $result_epreuve_id=$epreuve->get_row('epreuve_id');
 
 
+
+$result_users_perf = $_POST["result_users_perf"];
+ 
+$search  = array("'",'"');
+$replace = array(':',":");
+
+$result_users_perf= str_replace($search, $replace, $result_users_perf);
+
+$replace = array(':');
+$search  = array("::");
+$result_users_perf= str_replace($search, $replace, $result_users_perf);
+
+
+
 $result_club_region = $_POST["club_region"];
+
 $result_club_departement = $_POST["result_club_departement"];
 $result_epreuve_nom_complet = $_POST["epreuve_nom_complet"];
 $result_epreuve_filtre_nom = $_POST["epreuve_filtre_nom"];
@@ -197,6 +212,7 @@ $result_users_nationality = $_POST["users_nationality"];
 $result_villes_nom = $_POST["result_villes_nom"];
 $result_date_perf = $_POST["result_date_perf"];
 
+
  
 
          $result = new Mybdd($servername_,$dbname_,$username_,$password_);
@@ -206,6 +222,7 @@ $result_date_perf = $_POST["result_date_perf"];
            result_club_id,
            result_users_id,
            result_epreuve_id,
+           result_users_perf,
            result_club_nom,
            result_club_region,
            result_club_departement,
@@ -229,6 +246,7 @@ $result_date_perf = $_POST["result_date_perf"];
              '$result_club_id',
              '$result_users_id',
              '$result_epreuve_id',
+             '$result_users_perf',
              '$result_club_nom',
              '$result_club_region',
              '$result_club_departement',

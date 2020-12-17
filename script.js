@@ -24,6 +24,10 @@ class Information {
 }
 
 
+// nombre de pages 
+//tr[0].children[5].children[0].childElementCount
+
+ 
 
 //var source = source;
 var source = "https://bokonzi.com/MyBdd/php.php";
@@ -97,6 +101,9 @@ if(anne_epreuve_verif==true){
 		epreuve_emplacement = "SALLE";
 	 }
  }
+
+ 
+
 
  
 
@@ -259,52 +266,48 @@ club.push(); // envoie l'information au code pkp
 // valeur club 
 var result = new Information(source); // création de la classe  
 result.add("club_nom_complet", tr[i].children[8].innerText); // OK okOK okOK okOK okOK okOK okOK okOK okOK okOK ok
-result.add("epreuve_nom_complet", epreuve_nom_complet); //  ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok  
- 
+result.add("epreuve_nom_complet", epreuve_nom_complet); //  ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok   
 result.add("users_nom_complet", tr[i].children[6].innerText);
-result.add("",tr[4].children[20].innerText);
- 
+result.add("",tr[4].children[20].innerText); 
 // expected output: true
  
 result.add("result_club_departement",tr[i].children[10].innerText);
 result.add("club_region",tr[i].children[12].innerText);
+
+var result_users_perf_final = "";
+var result_users_boolean = false;
+var result_reccord ="";
+for(var xi = 0 ; xi<tr[i].children[2].innerText.length;xi++){
+
+	if(tr[i].children[2].innerText[xi]=="("){
+		result_users_boolean = true; 
+		result_reccord = "RP";
+	}
+	if(result_users_boolean==false){
+		result_users_perf_final = result_users_perf_final+tr[i].children[2].innerText[xi];
+	}
+}
  
+
+result.add("result_users_perf",result_users_perf_final);
 result.add("users_nom_complet", users_nom_complet); // ajout de l'information pour lenvoi 
 result.add("users_nom_complet_1",tr[i].children[6].innerText);
 result.add("result_users_nom_0",result_users_nom_0);
 result.add("result_users_nom_1",result_users_nom_1);
 result.add("result_users_nom_2",result_users_nom_2);
 result.add("result_date_perf",tr[i].children[18].innerText);
-
-
-result.add("users_naissance",users_naissance);
- 
+result.add("users_naissance",users_naissance); 
 result.add("users_naissance2",users_naissance2);
 result.add("users_nationality",users_nationality); 
 result.add("users_sex",users_sex);
 result.add("call", "users"); // ajout de l'information pour lenvoi 
-
 result.add("result_villes_nom", tr[i].children[20].innerText); // ajout de l'information pour lenvoi 
-
-
 result.add("epreuve_filtre_nom",epreuve_filtre_nom);
-result.add("epreuve_sex",epreuve_sex);
+ 
 result.add("epreuve_emplacement",epreuve_emplacement);
 result.add("call", "result"); // ajout de l'information pour lenvoi 
 result.push(); // envoie l'information au code pkp 
 console.log(result.info()); // demande l'information dans le tableau
 //fin du club
-
-
-
-
-
-
-
-	 
-	 
- 
- 
-}
-
-
+} 
+// boucle 2 
