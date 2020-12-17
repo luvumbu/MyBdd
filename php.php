@@ -216,7 +216,7 @@ $result_date_perf = $_POST["result_date_perf"];
  
 
          $result = new Mybdd($servername_,$dbname_,$username_,$password_);
-         $result->set_select_sql('SELECT * FROM `result` WHERE `result_users_nom_complet`="'.$users_nom_complet.'" AND `result_date_perf` ="'.$result_date_perf.'" '); 
+         $result->set_select_sql('SELECT * FROM `result` WHERE `result_users_nom_complet`="'.$users_nom_complet.'" AND `result_date_perf` ="'.$result_date_perf.'" AND `result_date_perf`="'.$result_date_perf.'" '); 
          //$apple->select_sql();
          $result->insert_sql( "INSERT INTO result (
            result_club_id,
