@@ -54,9 +54,45 @@ switch ($call) {
 
           $club = new Mybdd("localhost","u481158665_all_ffa_5","root","root");
           $club_nom_complet = $_POST["club_nom_complet"];
-          $epreuve_nom_complet = $_POST["epreuve_nom_complet"]; 
-          $nationality_name  = $_POST["nationality_name"]; 
-          $users_nom_complet = $_POST["users_nom_complet"]; 
+          $epreuve_nom_complet = $_POST["epreuve_nom_complet"];   
+          $users_nom_complet =  $_POST["users_nom_complet"];            
+           
+          $club_departement = $_POST["club_departement"];
+          $club_region = $_POST["club_region"];
+
+          $users_nom_complet_1 = $_POST["users_nom_complet_1"];
+          $result_users_nom_0 = $_POST["result_users_nom_0"];
+          $result_users_nom_1 = $_POST["result_users_nom_1"];
+          $result_users_nom_2 = $_POST["result_users_nom_2"];
+          $users_naissance = $_POST["users_naissance"];           
+          $users_naissance2 = $_POST["users_naissance2"];
+          $users_nationality = $_POST["users_nationality"];
+          $users_sex = $_POST["users_sex"];
+          $epreuve_filtre_nom = $_POST["epreuve_filtre_nom"];
+          $epreuve_sex = $_POST["epreuve_sex"];
+          $epreuve_emplacement = $_POST["epreuve_emplacement"];
+
+          $result_club_nom=             $club_nom_complet;
+          $result_club_region=          $club_region;
+          $result_club_departement =    $club_departement;
+          $result_epreuve_nom_complet = $epreuve_nom_complet;
+          $result_epreuve_filtre_nom=   $epreuve_filtre_nom;
+          $result_epreuve_sex=          $epreuve_sex;
+          $result_epreuve_emplacement = $epreuve_emplacement;
+          $result_users_nom_complet=    $users_nom_complet; 
+          $result_users_nom_complet_1=  $users_nom_complet_1;
+          $result_users_nom=            $result_users_nom_0;
+          $result_users_prenom0=        $result_users_nom_1;
+          $result_users_prenom1=        $result_users_nom_2;
+          $result_users_prenom2=        "";
+          $result_users_sex =           $users_sex;
+          $result_users_naissance=      $nationality_name;
+          $result_users_naissance2=     $users_naissance2;
+          $result_users_nationality =   $users_nationality;
+          $result_villes_nom =          $_POST["result_villes_nom"];
+          $result_date_perf =           $_POST["result_date_perf"];
+
+
 
           $club->set_select_sql('SELECT * FROM `club` WHERE `club_nom_complet`="'.$club_nom_complet.'"'); 
 
@@ -86,11 +122,7 @@ switch ($call) {
          // echo $epreuve->get_row('epreuve_sex');
          // echo $epreuve->get_row('epreuve_emplacement');
          // nationality  ok 
-          $nationality = new Mybdd("localhost","u481158665_all_ffa_5","root","root");
-          $nationality->set_select_sql('SELECT * FROM `nationality` WHERE `nationality_name`="'.$nationality_name.'"'); 
-          $nationality->set_select_row_name('nationality_id');           
-          $nationality->select_sql();
-          $nationality->get_row('nationality_id');         
+        
          // fin  nationality  ok 
 
           // user ok 
@@ -117,15 +149,102 @@ switch ($call) {
 $result_club_id=$club->get_row('club_id');
 $result_users_id=$users->get_row('users_id'); 
 $result_epreuve_id=$epreuve->get_row('epreuve_id');
+
+
+$result_club_region = $_POST["club_region"];
+$result_club_departement = $_POST["result_club_departement"];
+$result_epreuve_nom_complet = $_POST["epreuve_nom_complet"];
+$result_epreuve_filtre_nom = $_POST["epreuve_filtre_nom"];
+$result_epreuve_sex = $_POST["users_sex"];
+$result_epreuve_emplacement = $_POST["epreuve_emplacement"] ;
+$result_users_nom_complet = $_POST["users_nom_complet"]; 
+$result_users_nom_complet_1= $_POST["users_nom_complet_1"];
+$result_users_nom0 = $_POST["result_users_nom_0"];
+$result_users_nom1 = $_POST["result_users_nom_1"];
+$result_users_nom2 = $_POST["result_users_nom_2"]; 
+$result_users_naissance = $_POST["users_naissance"];
+$result_users_naissance2 = $_POST["users_naissance2"];
+$result_users_nationality = $_POST["users_nationality"];
+$result_villes_nom = $_POST["result_villes_nom"];
+$result_date_perf = $_POST["result_date_perf"];
+
  
 
          $result = new Mybdd("localhost","u481158665_all_ffa_5","root","root");
-         $result->set_select_sql('SELECT * FROM `result` WHERE `result_club_id`="'.$result_club_id.'"'); 
+         $result->set_select_sql('SELECT * FROM `result` WHERE `result_users_nom_complet`="'.$users_nom_complet.'" AND `result_date_perf` ="'.$result_date_perf.'" '); 
          //$apple->select_sql();
-         $result->insert_sql( "INSERT INTO result (result_club_id,result_users_id,result_epreuve_id)  VALUES ('$result_club_id','$result_users_id','$result_epreuve_id')");
+         $result->insert_sql( "INSERT INTO result (
+           result_club_id,
+           result_users_id,
+           result_epreuve_id,
+           result_club_nom,
+           result_club_region,
+           result_club_departement,
+           result_epreuve_nom_complet,
+           result_epreuve_filtre_nom,
+           result_epreuve_sex,
+           result_epreuve_emplacement,
+           result_users_nom_complet, 
+           result_users_nom_complet_1,
+           result_users_nom0,
+           result_users_nom1,
+           result_users_nom2,
+           result_users_naissance,
+           result_users_naissance2,
+           result_users_nationality,
+           result_villes_nom,
+           result_date_perf
+
+
+           )  VALUES (
+             '$result_club_id',
+             '$result_users_id',
+             '$result_epreuve_id',
+             '$result_club_nom',
+             '$result_club_region',
+             '$result_club_departement',
+             '$result_epreuve_nom_complet',
+             '$result_epreuve_filtre_nom',
+             '$result_epreuve_sex',
+             '$result_epreuve_emplacement',
+             '$result_users_nom_complet',
+             '$result_users_nom_complet_1',
+             '$result_users_nom0',
+             '$result_users_nom1',
+             '$result_users_nom2',
+             '$result_users_naissance',
+             '$result_users_naissance2',
+             '$result_users_nationality',
+             '$result_villes_nom',
+             '$result_date_perf'
+             )");
          //echo $apple->get_row("firstname");
 
+         
+/*
+       
+         $result_club_region=          $club_region;
+         $result_club_departement =    $club_departement;
+         $result_epreuve_nom_complet = $epreuve_nom_complet;
+         $result_epreuve_filtre_nom=   $epreuve_filtre_nom;
+         $result_epreuve_sex=          $epreuve_sex;
+         $result_epreuve_emplacement = $epreuve_emplacement;
+         $result_users_nom_complet=    $users_nom_complet; 
+         $result_users_nom_complet_1=  $users_nom_complet_1;
+         $result_users_nom=            $result_users_nom_0;
+         $result_users_prenom0=        $result_users_nom_1;
+         $result_users_prenom1=        $result_users_nom_2;
+         $result_users_prenom2=        "";
+         $result_users_sex =           $users_sex;
+         $result_users_naissance=      $nationality_name;
+         $result_users_naissance2=     $users_naissance2;
+         $result_users_nationality =   $users_nationality;
+         $result_villes_nom =          $_POST["result_villes_nom"];
+         $result_date_perf =           $_POST["result_date_perf"];
+*/
 
+
+         
 
          // Fin Insertion !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
           break;

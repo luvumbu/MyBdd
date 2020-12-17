@@ -111,33 +111,9 @@ epreuve.add("epreuve_emplacement",epreuve_emplacement);
 epreuve.add("call", "epreuve"); // ajout de l'information pour lenvoi 
 //console.log(epreuve.info()); // demande l'information dans le tableau
 epreuve.push(); // envoie l'information au code pkp 
- 
- result_users_nom =""; //ok
- result_users_nom=false;
-/*result_users_prenom // Nok
-result_naissance_nom
-result_naissance_filtre
-result_epreuve_nom
-result_filtre_epreuve_nom
-result_perf
-result_perf_2
-result_perf_3
-result_perf_4
-result_sex
-result_perf_commentaire
-result_club_nom
-result_club_region
-result_club_departement
-result_cat
-result_personal_reccord
-result_date_perf
-users_nationality
-result_ville_nom
+result_users_nom =""; //ok
+result_users_nom=false;
 
-
-
-
-*/
 
 
 users_sex = epreuve_sex;
@@ -213,23 +189,6 @@ for(var i = 3 ; i <taille_athletes-1; i++){
 		users_naissance2 ="19"+users_naissance;
 	   }
 	}
-
-
-
-	console.log(tr[i].children[6].innerText);
-	console.log(result_users_nom_1);	
-
-
-	console.log(result_users_nom_0+"__"+result_users_nom_1+result_users_nom_2+"__"+result_users_nom_3+"__"+result_users_nom_4);
- 
-/// iserrer du code ici 
-
-
-
-
-
- 
-
 if(result_users_nom_2.includes("(")==true){
 	
 	var result_users_nom_2 = result_users_nom_2.replace("(", "");
@@ -263,34 +222,6 @@ if(users_nationality_boolean==false){
 } 
 users_nom_complet =result_users_nom_0+" "+result_users_nom_1+" "+result_users_nom_2;
 users_nom_complet_1=tr[i].children[6].innerText;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var users = new Information("php.php"); // création de la classe 
 users.add("users_nom_complet", users_nom_complet); // ajout de l'information pour lenvoi 
 users.add("users_nom_complet_1",tr[i].children[6].innerText);
@@ -305,12 +236,8 @@ users.add("call", "users"); // ajout de l'information pour lenvoi
 // expected output: true
 console.log(users.info()); // demande l'information dans le tableau
 users.push(); // envoie l'information au code pkp 
-
 // partie club 
-
-
-var club = new Information("php.php"); // création de la classe 
- 
+var club = new Information("php.php"); // création de la classe  
 club.add("club_nom_complet",tr[i].children[8].innerText);
 club.add("club_departement",tr[i].children[10].innerText);
 club.add("club_region",tr[i].children[12].innerText);
@@ -318,43 +245,39 @@ club.add("call", "club"); // ajout de l'information pour lenvoi
 // expected output: true
 console.log(club.info()); // demande l'information dans le tableau
 club.push(); // envoie l'information au code pkp 
-
 // fin de la partie club 
-
-
-
-// partie result 
-
- 
-
- 
+// partie result  
 // valeur club 
 var result = new Information("php.php"); // création de la classe  
-result.add("club_nom_complet", tr[i].children[8].innerText); // ajout de l'information pour lenvoi 
-result.add("epreuve_nom_complet", epreuve_nom_complet); // ajout de l'information pour lenvoi 
-result.add("nationality_name", users_nationality); // ajout de l'information pour lenvoi 
-result.add("users_nom_complet", tr[i].children[6].innerText); // ajout de l'information pour lenvoi 
+result.add("club_nom_complet", tr[i].children[8].innerText); // OK okOK okOK okOK okOK okOK okOK okOK okOK okOK ok
+result.add("epreuve_nom_complet", epreuve_nom_complet); //  ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok  
+ 
+result.add("users_nom_complet", tr[i].children[6].innerText);
 result.add("",tr[4].children[20].innerText);
-result.add("call", "result"); // ajout de l'information pour lenvoi 
+ 
 // expected output: true
-
-
-result.add("club_nom_complet",tr[i].children[8].innerText);
-result.add("club_departement",tr[i].children[10].innerText);
+ 
+result.add("result_club_departement",tr[i].children[10].innerText);
 result.add("club_region",tr[i].children[12].innerText);
-result.add("call", "club"); // ajout de l'information pour lenvoi 
+ 
 result.add("users_nom_complet", users_nom_complet); // ajout de l'information pour lenvoi 
 result.add("users_nom_complet_1",tr[i].children[6].innerText);
 result.add("result_users_nom_0",result_users_nom_0);
 result.add("result_users_nom_1",result_users_nom_1);
 result.add("result_users_nom_2",result_users_nom_2);
+result.add("result_date_perf",tr[i].children[18].innerText);
+
+
 result.add("users_naissance",users_naissance);
-result.add("nationality_name",users_nationality);
+ 
 result.add("users_naissance2",users_naissance2);
 result.add("users_nationality",users_nationality); 
 result.add("users_sex",users_sex);
 result.add("call", "users"); // ajout de l'information pour lenvoi 
-result.add("epreuve_nom_complet", epreuve_nom_complet); // ajout de l'information pour lenvoi 
+
+result.add("result_villes_nom", tr[i].children[20].innerText); // ajout de l'information pour lenvoi 
+
+
 result.add("epreuve_filtre_nom",epreuve_filtre_nom);
 result.add("epreuve_sex",epreuve_sex);
 result.add("epreuve_emplacement",epreuve_emplacement);
